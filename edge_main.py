@@ -149,7 +149,7 @@ if __name__ == '__main__':
     unused_ids_heap = Heap(65535, used_ids)  # 2 bytes used to represent id
 
     # host connection
-    edge_addr = "127.0.0.1"
+    edge_addr = "192.168.4.1"
     edge_port = 8009
     socket = Connection()
     socket.host_connection(edge_addr, int(edge_port))
