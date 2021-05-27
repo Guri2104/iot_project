@@ -1,9 +1,9 @@
 protocol_version: "v1.0.0"
 # device id is unique to each device and is used on the cloud
-device_id: "uid8933674632"
-access_point_ssid: "wifi name"
-access_point_password: "wifi password"
-edge_device_address: "127.0.0.1"
+device_id: "uid8933674633"
+access_point_ssid: "RPiEdge"
+access_point_password: none
+edge_device_address: "192.168.4.1"
 edge_device_port: "8009"
 # The communication medium can be either bluetooth or wifi
 communication_medium: "wifi"
@@ -26,7 +26,7 @@ sensors:
     # The value of each attribute is the number of bytes the device
     # will use to send the reading.
     values:
-      - co2: int
+      - co: int
       - no2: short
   -
     name: "spec_co_sensor"

@@ -22,19 +22,12 @@ class Finder:
 
     def connectToWAP(self):
         try:
-            # for MacOS, use networksetup command
-            # os.system("networksetup -setairportnetwork {} {}".format(self.interface_name, self.server_name))
-
-            # for Linux, use nmcli command
-            print("yo")
             num = os.system("wpa_cli -i %s add_network" % self.interface_name)
-            print("num: ")
-            print(num)
+
             num1 = os.system('wpa_cli -i %s set_network 0 ssid \'"%s"\'' % (self.interface_name, self.server_name))
-            print("num1: ")
-            print(num1)
-            os.system('wpa_cli -i %s set_network 0 psk \'"%s"\'' % (self.interface_name, self.password))
-            print("num2")
+            if self.password is not None:
+                os.system('wpa_cli -i %s set_network 0 psk \'"%s"\'' % (self.interface_name, self.password))
+
             os.system("wpa_cli -i %s select_network 0" % self.interface_name)
         except:
             raise Exception

@@ -14,6 +14,8 @@ if __name__ == '__main__':
     if medium == "wifi":
         ssid = configs.get_config_value("access_point_ssid")
         p_key = configs.get_config_value("access_point_password")
+        if p_key == "none":
+            p_key = None
         wap = Finder(server_name=ssid, password=p_key, interface="wlan0")
         wap.connection()
 
