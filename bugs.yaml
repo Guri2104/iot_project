@@ -1,0 +1,19 @@
+9:
+  deviceId: 5
+  readings: 8
+9:
+  deviceId: 5
+  readings: 7
+9:
+  deviceId: 5
+  readings: 20
+9:
+  deviceId: 5
+  readings: 8
+1:
+  deviceId: uid8933674632
+  readings:
+    co2: short
+    humidity: float
+    no2: short
+    temperature: int
