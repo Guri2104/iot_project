@@ -12,24 +12,30 @@ class Finder:
         self.main_dict = {}
 
     def connection(self):
-        if self.interface_name == "en0":
-            try:
-                result = self.connectToWAP()
-            except Exception as exp:
-                print("Couldn't connect to name : {}. {}".format(self.server_name, exp))
-            else:
-                if result:
-                    print("Successfully connected to {}".format(self.server_name))
+        try:
+            result = self.connectToWAP()
+        except Exception as exp:
+            print("Couldn't connect to name : {}. {}".format(self.server_name, exp))
+        else:
+            if result:
+                print("Successfully connected to {}".format(self.server_name))
 
     def connectToWAP(self):
         try:
             # for MacOS, use networksetup command
-            os.system("networksetup -setairportnetwork {} {}".format(self.interface_name, self.server_name))
+            # os.system("networksetup -setairportnetwork {} {}".format(self.interface_name, self.server_name))
 
-        # for Linux, use nmcli command
-        # os.system("nmcli d wifi connect {} password {} iface {}".format(self.server_name,
-        # 																self.password,
-        # 																self.interface_name))
+            # for Linux, use nmcli command
+            print("yo")
+            num = os.system("wpa_cli -i %s add_network" % self.interface_name)
+            print("num: ")
+            print(num)
+            num1 = os.system('wpa_cli -i %s set_network 0 ssid \'"%s"\'' % (self.interface_name, self.server_name))
+            print("num1: ")
+            print(num1)
+            os.system('wpa_cli -i %s set_network 0 psk \'"%s"\'' % (self.interface_name, self.password))
+            print("num2")
+            os.system("wpa_cli -i %s select_network 0" % self.interface_name)
         except:
             raise Exception
         else:
@@ -40,8 +46,8 @@ if __name__ == "__main__":
     # Server_name is a case insensitive string, and/or regex pattern which demonstrates
     # the name of targeted WIFI device or a unique part of it.
     server_name = "RPiEdge"
-    password = "fraZer2104"
-    interface_name = "en0"
+    password = " "
+    interface_name = "wlan0"
     F = Finder(server_name=server_name,
                password=password,
                interface=interface_name)
