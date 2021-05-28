@@ -9,8 +9,8 @@ import yaml
 import time
 import json
 
-host_addr = "192.168.4.1"
-host_port = 8009
+host_addr = "127.0.0.1"
+host_port = 8080
 
 # locks required to handle concurrency
 config_file_lock = threading.Lock()
@@ -128,6 +128,9 @@ def garbage_collection():
 
         for garbage in remove_list:
             id_config_mapping.pop(garbage)
+            heap_lock.acquire()
+            unused_ids_heap.heap_push(int(garbage))
+            heap_lock.release()
 
         mapping_log_lock.acquire()
         with open('mappings_log.yaml', 'w') as yaml_file:
