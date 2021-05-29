@@ -1,6 +1,6 @@
 # iot_project
 
-Phase I implementation of the End-to-Edge communication pipeline.
+## Phase I implementation of the End-to-Edge communication pipeline.
 
 Edge Computer follows the defined protocol to perform the necessary handshake and accept the sensor-reading messages from the end-devices.
 
@@ -12,4 +12,5 @@ Edge Computer follows the defined protocol to perform the necessary handshake an
  - It extracts, transforms and loads the incoming messages (sensor readings) with all the required data in a structure that is compliant with the cloud services and forwards it to other program of the Edge computer that communicates with the cloud (that program is not in this repo)
  
 End device folder contains program that also follows the defined protocol to perform the necessary handshake and send the sensor-reading messages to the Edge Computer.
-However, it only contains a dummy config file and a single dummy sensor reading to test out the communication pipeline. It supports communication over wifi and bluetooth, and methods to establish keep-alive connections as well as capability to disconnect, sleep for period of its transmission rate (mentioned in config file) to save power resources and then quickly connect again to the Edge for sending the next reading. 
+ - it only contains a dummy config file and a single dummy sensor reading to test out the communication pipeline. It supports communication over wifi and bluetooth, and methods to establish keep-alive connections as well as capability to disconnect, sleep for period of its transmission rate (mentioned in config file) to save power resources and then quickly connect again to the Edge for sending the next reading. 
+ - This End-device folder does not contain code for setting up sensor drivers, creating config files and reading from sensors. To access the complete end-device code, please refer to the main ema-end-device repo: https://github.com/agoryelov/ema-end-device
